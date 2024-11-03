@@ -1,12 +1,11 @@
 kaboom({
-    global:true,
-    fullscreen:true,
-    scale:1,
+    global: true,
+    fullscreen: true,
+    scale: 1,
     debug: true,
     width: 1920,
-    background: [ 0, 0, 0, ],
+    background: [0, 0, 0,],
 })
-
 
 loadSprite("player", "assets/player.png");
 loadSprite("mermi", "assets/mermi.png");
@@ -15,32 +14,33 @@ loadSound("shoot", "sfx/shoot.mp3");
 loadSound("hit", "sfx/hit.mp3");
 loadSound("music", "sfx/music.mp3");
 
-
-
 const music = play("music", {
     volume: 0.8,
     loop: true
 });
-function addText(textValue,position){
+function addText(textValue, position)
+{
     const textLabel = add([
         text(textValue),
         pos(position)
     ]);
 }
-scene("menu", () =>{
+scene("menu", () =>
+{
     music.restart;
     const title = add([
         text("Space Invaders Clone"),
-        pos(960,100),
+        pos(960, 100),
         origin("center")
     ])
 
 
 
-    addText("Use arrow keys for move", vec2(25,800));
+    addText("Use arrow keys for move", vec2(25, 800));
     addText("Use space key for shoot", vec2(25, 875));
 
-    function addButton(txt, p, f) {
+    function addButton(txt, p, f)
+    {
         const btn = add([
             text(txt, 8),
             pos(p),
@@ -50,7 +50,8 @@ scene("menu", () =>{
         ]);
         btn.clicks(f);
         //btn.clicks(f);
-        btn.hovers(() => {
+        btn.hovers(() =>
+        {
             const t = time() * 10;
             btn.color = rgb(
                 wave(0, 255, t),
@@ -58,31 +59,34 @@ scene("menu", () =>{
                 wave(0, 255, t + 4),
             );
             btn.scale = vec2(1.2);
-        }, () => {
+        }, () =>
+        {
             btn.scale = vec2(1);
             btn.color = rgb();
         });
     }
-    
+
     addButton("Start Game", vec2(960, 300), () => go("game"));
     addButton("Quit", vec2(960, 400), () => debug.log("lets act like game is closed"));
- 
-    
+
+
     // reset cursor to default at frame start for easier cursor management
     action(() => cursor("default"));
-    
-        // toggle fullscreen
-        keyPress("f", () => {
-            fullscreen(!fullscreen());
-            });
+
+    // toggle fullscreen
+    keyPress("f", () =>
+    {
+        fullscreen(!fullscreen());
+    });
 })
 
-scene("game", () =>{
+scene("game", () =>
+{
     let hareketHizi = 500;
     let mermiHizi = 800;
     let alienSpeed = 100;
 
-    
+
     const score = add([
         text("Score: 0"),
         pos(24, 24),
@@ -91,47 +95,48 @@ scene("game", () =>{
 
 
 
-function limits(){
+    function limits()
+    {
 
-    add([
-    rect(1920, 2),  
-    pos(0,0),
-    area(),
-    solid(),
-    color(0,0,0),
-    "top_wall"
-    ]);
+        add([
+            rect(1920, 2),
+            pos(0, 0),
+            area(),
+            solid(),
+            color(0, 0, 0),
+            "top_wall"
+        ]);
 
-    add([
-    rect(1920, 2),
-    pos(0,930),
-    area(),
-    solid(),
-    color(0,0,0),
-    "bottom_wall"
-    ]);
+        add([
+            rect(1920, 2),
+            pos(0, 930),
+            area(),
+            solid(),
+            color(0, 0, 0),
+            "bottom_wall"
+        ]);
 
-    add([
-        rect(2,1080),
-        pos(30,0),
-        area(),
-        solid(),
-        color(0,0,0),
-        "side_wall"
-    ]);
+        add([
+            rect(2, 1080),
+            pos(30, 0),
+            area(),
+            solid(),
+            color(0, 0, 0),
+            "side_wall"
+        ]);
 
-    add([
-        rect(2,1080),
-        pos(1888,0),
-        area(),
-        solid(),
-        color(0,0,0),
-        "side_wall"
-    ]);
-}
+        add([
+            rect(2, 1080),
+            pos(1888, 0),
+            area(),
+            solid(),
+            color(0, 0, 0),
+            "side_wall"
+        ]);
+    }
     const player = add([
         sprite("player"),
-        pos(950,850),
+        pos(950, 850),
         area(),
         solid(),
         health(50),
@@ -139,48 +144,55 @@ function limits(){
     ]);
 
     // Kontroller
-    keyDown("left", () =>{
-    player.move(-hareketHizi,0); // X-Y
+    keyDown("left", () =>
+    {
+        player.move(-hareketHizi, 0); // X-Y
     });
 
-    keyDown("right", () =>{
-        player.move(+hareketHizi,0);
+    keyDown("right", () =>
+    {
+        player.move(+hareketHizi, 0);
     });
 
-    keyPress("space", () =>{
+    keyPress("space", () =>
+    {
         atesEt();
         play("shoot");
     });
 
     // toggle fullscreen
-    keyPress("f", () => {
-    fullscreen(!fullscreen());
+    keyPress("f", () =>
+    {
+        fullscreen(!fullscreen());
     });
 
-    function atesEt(){
+    function atesEt()
+    {
         add([
-        sprite("mermi"),
-        scale(2),
-        pos(player.pos.x+17.5, player.pos.y-70),
-        area(),
-        solid(),
-        move(UP,mermiHizi),
-        "mermi"
+            sprite("mermi"),
+            scale(2),
+            pos(player.pos.x + 17.5, player.pos.y - 70),
+            area(),
+            solid(),
+            move(UP, mermiHizi),
+            "mermi"
         ]);
     }
 
-    function spawnAlien(){
+    function spawnAlien()
+    {
         add([
-        sprite("alien_1"),
-        area(),
-        pos(rand(0,1800),rand(100,300)),
-        scale(2),
-        solid(),
-        move(DOWN,alienSpeed),
-        "alien"
-    ]);
+            sprite("alien_1"),
+            area(),
+            pos(rand(0, 1800), rand(100, 300)),
+            scale(2),
+            solid(),
+            move(DOWN, alienSpeed),
+            "alien"
+        ]);
 
-        wait(rand(0.5, 1.5), ()=>{
+        wait(rand(0.5, 1.5), () =>
+        {
             spawnAlien()
         });
     }
@@ -189,12 +201,13 @@ function limits(){
 
     const healthText = add([
         text("Health: 50"),
-        pos(24,98),
+        pos(24, 98),
         { value: 50 },
     ]);
 
     // tagler uzerinden collision tespiti
-    collides("alien", "mermi", (e,mermi) =>{ // Some shit happens here
+    collides("alien", "mermi", (e, mermi) =>
+    { // Some shit happens here
         destroy(e);
         destroy(mermi);
         addKaboom(mermi.pos);
@@ -203,11 +216,13 @@ function limits(){
         score.text = "Score:" + score.value;
     })
 
-    collides("mermi", "top_wall", (mermi,top_wall) =>{
+    collides("mermi", "top_wall", (mermi, top_wall) =>
+    {
         destroy(mermi);
     })
 
-    collides("alien", "bottom_wall", (alien,bottom_wall) =>{
+    collides("alien", "bottom_wall", (alien, bottom_wall) =>
+    {
         destroy(alien);
         shake();
         player.hurt(1)
@@ -215,7 +230,8 @@ function limits(){
         healthText.text = "Health:" + healthText.value;
     })
 
-    collides("player", "alien", (p,a) =>{
+    collides("player", "alien", (p, a) =>
+    {
         destroy(a);
         shake();
         player.hurt(1)
@@ -224,7 +240,8 @@ function limits(){
     })
 
     limits();
-    player.on("death", () => {
+    player.on("death", () =>
+    {
         music.stop();
         destroy(player);
         go("menu");
