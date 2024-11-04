@@ -1,5 +1,5 @@
 # Space Invaders
-![menu](https://media3.giphy.com/media/KY2ZMhnCxP008/200w.gif?cid=6c09b9522qd4hihm96mqvg1w4gab7m8lk8zh8e9cyodqw8n8&ep=v1_gifs_search&rid=200w.gif&ct=g)
+![preview](demo.gif)
 
 ## What is Space Invaders?
 
