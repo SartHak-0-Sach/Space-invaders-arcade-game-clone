@@ -15,4 +15,6 @@ It's a simple remake of Space Invaders with Javascript. I wanted to test out <a 
 - ←↑→↓ : Movement
 - **Space** : Shoot
 
-The game can be tested and can be played via [this link](https://space-invaders-arcade-game-clone.vercel.app/)
+The game can be tested and can be played via [this link](https://berkbal.github.io/space-invaders/)
+
+**Happy gaming!!**😁✌🏻
