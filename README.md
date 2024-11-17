@@ -17,4 +17,4 @@ It's a simple remake of Space Invaders with Javascript. I wanted to test out <a 
 
 The game can be tested and can be played via [this link](https://berkbal.github.io/space-invaders/)
 
-**Happy gaming!!**😁✌🏻
+**Hope this was able to bring back some beautiful nostalgic memories!!** 😁🥹✌🏻
